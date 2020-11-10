@@ -1,9 +1,12 @@
+import { AskNumberComponent } from './../../auth/ask_number/ask_number.component';
 import { AuthService } from './../../auth/auth.service';
 import { postsService } from './../posts.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
-import { PageEvent } from '@angular/material';
+import { PageEvent,MatDialog ,MatDialogRef} from '@angular/material';
+
+
 
 @Component({
   selector:"app-post-list",
@@ -18,7 +21,7 @@ export class PostListComponent implements OnInit,OnDestroy{
   //   { title: "Third Post", content: "This is the third post's content" }
   // ];
 
-  constructor(public postsService:postsService , public authService:AuthService){}
+  constructor(public dialog:MatDialog ,public postsService:postsService , public authService:AuthService){}
   posts:Post[]= [];
   postsSub:Subscription;
   isLoading=false;
@@ -33,6 +36,11 @@ export class PostListComponent implements OnInit,OnDestroy{
 
   ngOnInit()
   {
+
+    let dialogRef = this.dialog.open(AskNumberComponent, {
+      height: '400px',
+      width: '600px',
+    });
     this.isLoading=true;
 
     this.postsService.getPosts(this.postsPerPage,this.currentPage);

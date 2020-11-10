@@ -19,12 +19,14 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDialogModule
 } from "@angular/material";
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { AskNumberComponent } from './auth/ask_number/ask_number.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     PostCreateComponent,
     PostListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AskNumberComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,9 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     MatToolbarModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
+
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },postsService,AuthService],
   bootstrap: [AppComponent]
